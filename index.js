@@ -6,13 +6,13 @@ function print2DArray(array) {
   for (let i = 0; i < array.length; i++) {
     for (let y = 0; y < array[i].length; y++) {
       const element = array[i][y];
-      let red = Math.round(230+(0.1*y));
-      let green = 81+(1*y);
+      let red = Math.round(230 + 0.1 * y);
+      let green = 81 + 2 * y;
       let blue = 0;
-      const color = `\x1b[38;2;${red};${green};${blue}m`
+      const color = `\x1b[38;2;${red};${green};${blue}m`;
       process.stdout.write(element == 1 ? color + "██" : "  ");
     }
-    process.stdout.write("\n");
+    process.stdout.write("\x1b[0m\n");
   }
 }
 
@@ -35,14 +35,17 @@ function mergeHorizontally(grids) {
 
 const rl = readline.createInterface({ input, output });
 
-rl.question("Enter name: ", (answer) => {
-  const name = answer.toLowerCase().split("");
+function ask() {
+  rl.question("Enter name: ", (answer) => {
+    const name = answer.toLowerCase().split("");
 
-  let mergeArray = [];
-  name.forEach((e) => mergeArray.push(alphabet[e]));
-  mergeArray = mergeHorizontally(mergeArray);
-  print2DArray(mergeArray);
-  rl.close();
-});
+    let mergeArray = [];
+    name.forEach((e) => mergeArray.push(alphabet[e]));
+    mergeArray = mergeHorizontally(mergeArray);
+    print2DArray(mergeArray);
+    ask();
+  });
+}
 
+ask();
 
