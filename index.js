@@ -1,5 +1,7 @@
 
 const alphabet = require('./alphabet')
+const readline = require('node:readline');
+const { stdin: input, stdout: output } = require('node:process');
 
 function print2DArray (array) {
     for (let i = 0; i < array.length; i++) {
@@ -13,3 +15,18 @@ function print2DArray (array) {
 }
 
 print2DArray(alphabet["a"])
+
+
+
+const rl = readline.createInterface({ input, output });
+
+rl.question('Enter name: ', (answer) => {
+  const name = answer.split('');
+
+  name.forEach((e) => {
+    print2DArray(alphabet[e])
+    process.stdout.write("\n")
+  });
+  
+  rl.close();
+});
