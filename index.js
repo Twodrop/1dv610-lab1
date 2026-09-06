@@ -1,13 +1,12 @@
 const alphabet = require("./alphabet");
 const readline = require("node:readline");
 const { stdin: input, stdout: output } = require("node:process");
-let debug = []
+
 function print2DArray(array) {
   for (let i = 0; i < array.length; i++) {
     for (let y = 0; y < array[i].length; y++) {
       const element = array[i][y];
       let red = Math.round(230+(0.1*y));
-      debug.push(red)
       let green = 81+(1*y);
       let blue = 0;
       const color = `\x1b[38;2;${red};${green};${blue}m`
