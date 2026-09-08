@@ -17,9 +17,8 @@ function print2DArray(array) {
 }
 
 function mergeHorizontally(grids) {
-  const gap = 1;
   const height = grids[0].length;
-  const spacer = Array(gap).fill(0);
+  const spacer = [0];
   const result = [];
 
   for (let row = 0; row < height; row++) {
